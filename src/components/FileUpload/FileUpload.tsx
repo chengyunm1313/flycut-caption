@@ -41,6 +41,7 @@ export function FileUpload({ className, onFileSelect }: FileUploadProps) {
     'video/mov',
     'video/quicktime',
     'audio/mp3',
+    'audio/mpeg',
     'audio/wav',
     'audio/ogg',
     'audio/m4a',
