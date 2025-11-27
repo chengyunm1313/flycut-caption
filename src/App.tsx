@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { FlyCutCaption } from './index'
-import { zhCN, enUS, type FlyCutCaptionLocale } from './contexts/LocaleProvider'
+import { zhCN, zhTW, enUS, type FlyCutCaptionLocale } from './contexts/LocaleProvider'
 
 // 创建自定义语言包示例 - 日语
 const customJaJP: FlyCutCaptionLocale = {
@@ -362,6 +362,9 @@ function App() {
     // 根据语言设置相应的语言包
     switch (language) {
       case 'zh':
+      case 'zh-TW':
+        setCurrentLocale(zhTW)
+        break
       case 'zh-CN':
         setCurrentLocale(zhCN)
         break

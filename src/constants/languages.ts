@@ -3,7 +3,7 @@
 
 export const WHISPER_LANGUAGES = {
   en: 'English',
-  zh: '中文',
+  zh: '中文 (繁體)',
   de: 'Deutsch',
   es: 'Español',
   ru: 'Русский',

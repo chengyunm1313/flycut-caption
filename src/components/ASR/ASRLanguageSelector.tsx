@@ -1,5 +1,5 @@
-// ASR 语言选择器组件 - 专用于语音识别语言选择
-// 支持 Whisper 模型的所有语言，带搜索和分组功能
+// ASR 語言選擇器組件 - 專用於語音辨識語言選擇
+// 支援 Whisper 模型的所有語言，帶搜尋和分組功能
 
 import { useState, useCallback, useMemo, useRef, useEffect } from 'react';
 import { cn } from '@/lib/utils';
@@ -19,7 +19,7 @@ export function ASRLanguageSelector({
   onLanguageChange,
   disabled = false,
   className,
-  placeholder = '搜索语音识别语言...'
+  placeholder = '搜尋語音辨識語言...'
 }: ASRLanguageSelectorProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');

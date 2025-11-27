@@ -61,7 +61,7 @@ export interface SubtitleStyle {
 export interface FlyCutCaptionConfig {
   /** Theme mode */
   theme?: 'light' | 'dark' | 'auto'
-  /** Interface language (zh-CN, en-US, etc.) */
+  /** Interface language (zh-CN, zh-TW, en-US, etc.) */
   language?: string
   /** ASR recognition language */
   asrLanguage?: string
@@ -114,7 +114,7 @@ export interface FlyCutCaptionProps {
 // Default configuration
 export const defaultConfig: Required<FlyCutCaptionConfig> = {
   theme: 'auto',
-  language: 'zh-CN',
+  language: 'zh-TW',
   asrLanguage: 'auto',
   enableDragDrop: true,
   enableExport: true,

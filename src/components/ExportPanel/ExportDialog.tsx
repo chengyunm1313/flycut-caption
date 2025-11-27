@@ -18,6 +18,7 @@ import {
   AlertCircle,
   CheckCircle
 } from 'lucide-react';
+import { useTranslation } from '@/contexts/LocaleProvider';
 
 export interface VideoExportOptions {
   format: 'mp4' | 'webm';
@@ -40,6 +41,7 @@ export function ExportDialog({
   onExportSubtitles,
   onExportVideo
 }: ExportDialogProps) {
+  const { language } = useTranslation();
   const [videoOptions, setVideoOptions] = useState<VideoExportOptions>({
     format: 'mp4',
     quality: 'medium',
@@ -119,11 +121,13 @@ export function ExportDialog({
               </div>
 
               <div className="flex items-start space-x-2 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg text-sm">
-                <CheckCircle className="w-4 h-4 text-blue-600 dark:text-blue-400 mt-0.5 flex-shrink-0" />
+                <CheckCircle className="w-4 h-4 text-blue-600 dark:text-blue-400 mt-0.5 shrink-0" />
                 <div>
-                  <div className="font-medium text-blue-900 dark:text-blue-100">仅导出保留的字幕</div>
+                  <div className="font-medium text-blue-900 dark:text-blue-100">
+                    {language.startsWith('zh') ? '僅匯出保留的字幕' : 'Only export kept subtitles'}
+                  </div>
                   <div className="text-blue-700 dark:text-blue-300 mt-1">
-                    已删除的字幕片段不会包含在导出文件中
+                    {language.startsWith('zh') ? '已刪除的字幕片段不會包含在匯出檔案中' : 'Deleted subtitle segments will not be included in the exported file'}
                   </div>
                 </div>
               </div>
@@ -230,7 +234,7 @@ export function ExportDialog({
 
               {/* 警告信息 */}
               <div className="flex items-start space-x-2 p-3 bg-orange-50 dark:bg-orange-900/20 rounded-lg text-sm">
-                <AlertCircle className="w-4 h-4 text-orange-600 dark:text-orange-400 mt-0.5 flex-shrink-0" />
+                <AlertCircle className="w-4 h-4 text-orange-600 dark:text-orange-400 mt-0.5 shrink-0" />
                 <div>
                   <div className="font-medium text-orange-900 dark:text-orange-100">注意事项</div>
                   <div className="text-orange-700 dark:text-orange-300 mt-1">

@@ -2,6 +2,7 @@ import React, { createContext, useContext, useState, useCallback, useMemo, useEf
 import type { FlyCutCaptionLocale } from '@/locales';
 import { defaultLocale } from '@/locales';
 import zhCN from '@/locales/zh_CN';
+import zhTW from '@/locales/zh_TW';
 import enUS from '@/locales/en_US';
 
 // 语言包注册表
@@ -11,8 +12,9 @@ interface LocaleRegistry {
 
 // 内置语言包
 const builtinLocales: LocaleRegistry = {
-  'zh': zhCN,
+  'zh': zhTW,
   'zh-CN': zhCN,
+  'zh-TW': zhTW,
   'en': enUS,
   'en-US': enUS,
 };
@@ -145,6 +147,6 @@ export function useTranslation() {
   return { t, locale, language };
 }
 
-// 导出类型和内置语言包，供用户使用
+// 导出类型和内置语言包,供用户使用
 export type { FlyCutCaptionLocale };
-export { zhCN, enUS, defaultLocale };
+export { zhCN, zhTW, enUS, defaultLocale };

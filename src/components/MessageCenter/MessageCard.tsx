@@ -2,6 +2,7 @@
 import { cn } from '@/lib/utils';
 import { X, CheckCircle, AlertCircle, AlertTriangle, Info, Clock, Loader2 } from 'lucide-react';
 import type { Message } from '@/types/message';
+import { useTranslation } from '@/contexts/LocaleProvider';
 
 interface MessageCardProps {
   message: Message;
@@ -45,18 +46,31 @@ const colorMap = {
   },
 };
 
-function formatTime(timestamp: number) {
+function formatTime(timestamp: number, locale: string = 'zh-TW') {
   const now = Date.now();
   const diff = now - timestamp;
   
-  if (diff < 60000) { // 1分钟内
-    return '刚刚';
-  } else if (diff < 3600000) { // 1小时内
-    return `${Math.floor(diff / 60000)}分钟前`;
-  } else if (diff < 86400000) { // 1天内
-    return `${Math.floor(diff / 3600000)}小时前`;
+  // 根據語言決定時間格式文字
+  const timeTexts = locale.startsWith('zh') 
+    ? {
+        justNow: '剛剛',
+        minutesAgo: (n: number) => `${n}分鐘前`,
+        hoursAgo: (n: number) => `${n}小時前`,
+      }
+    : {
+        justNow: 'just now',
+        minutesAgo: (n: number) => `${n} min ago`,
+        hoursAgo: (n: number) => `${n} hr ago`,
+      };
+  
+  if (diff < 60000) { // 1分鐘內
+    return timeTexts.justNow;
+  } else if (diff < 3600000) { // 1小時內
+    return timeTexts.minutesAgo(Math.floor(diff / 60000));
+  } else if (diff < 86400000) { // 1天內
+    return timeTexts.hoursAgo(Math.floor(diff / 3600000));
   } else {
-    return new Date(timestamp).toLocaleDateString('zh-CN', {
+    return new Date(timestamp).toLocaleDateString(locale, {
       month: 'short',
       day: 'numeric',
       hour: '2-digit',
@@ -66,6 +80,7 @@ function formatTime(timestamp: number) {
 }
 
 export function MessageCard({ message, onMarkAsRead, onRemove }: MessageCardProps) {
+  const { language } = useTranslation();
   const Icon = iconMap[message.type];
   const colors = colorMap[message.type];
 
@@ -101,11 +116,11 @@ export function MessageCard({ message, onMarkAsRead, onRemove }: MessageCardProp
       <div className="flex items-start space-x-3">
         {/* 未读标识 */}
         {!message.read && (
-          <div className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0" />
+          <div className="w-2 h-2 bg-primary rounded-full mt-2 shrink-0" />
         )}
         
         {/* 图标 */}
-        <div className="flex-shrink-0 mt-0.5">
+        <div className="shrink-0 mt-0.5">
           <Icon className={cn('h-5 w-5', colors.icon, message.type === 'processing' && 'animate-spin')} />
         </div>
         
@@ -138,11 +153,11 @@ export function MessageCard({ message, onMarkAsRead, onRemove }: MessageCardProp
             <div className="mt-3 space-y-2">
               <div className="flex justify-between items-center text-xs">
                 <span className="text-muted-foreground capitalize">
-                  {message.progress.stage === 'analyzing' && '分析中'}
-                  {message.progress.stage === 'cutting' && '裁剪中'}
-                  {message.progress.stage === 'encoding' && '编码中'}
-                  {message.progress.stage === 'complete' && '完成'}
-                  {message.progress.stage === 'error' && '错误'}
+                  {message.progress.stage === 'analyzing' && (language.startsWith('zh') ? '分析中' : 'Analyzing')}
+                  {message.progress.stage === 'cutting' && (language.startsWith('zh') ? '裁剪中' : 'Cutting')}
+                  {message.progress.stage === 'encoding' && (language.startsWith('zh') ? '編碼中' : 'Encoding')}
+                  {message.progress.stage === 'complete' && (language.startsWith('zh') ? '完成' : 'Complete')}
+                  {message.progress.stage === 'error' && (language.startsWith('zh') ? '錯誤' : 'Error')}
                 </span>
                 <span className="text-muted-foreground">{message.progress.progress}%</span>
               </div>
@@ -183,11 +198,11 @@ export function MessageCard({ message, onMarkAsRead, onRemove }: MessageCardProp
           <div className="flex items-center mt-2 text-xs text-muted-foreground">
             <Clock className="h-3 w-3 mr-1" />
             <time dateTime={new Date(message.timestamp).toISOString()}>
-              {formatTime(message.timestamp)}
+              {formatTime(message.timestamp, language)}
             </time>
             {message.persistent && (
               <span className="ml-2 px-1.5 py-0.5 bg-muted rounded text-xs">
-                置顶
+                {language.startsWith('zh') ? '置頂' : 'Pinned'}
               </span>
             )}
           </div>

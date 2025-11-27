@@ -106,7 +106,7 @@ export function SubtitleSettings({
 
   const presetStyles = [
     {
-      name: '经典白字',
+      name: '經典白字',
       style: {
         ...defaultSubtitleStyle,
         color: '#FFFFFF',
@@ -117,7 +117,7 @@ export function SubtitleSettings({
       }
     },
     {
-      name: '黄色字幕',
+      name: '黃色字幕',
       style: {
         ...defaultSubtitleStyle,
         color: '#FFFF00',
@@ -156,13 +156,13 @@ export function SubtitleSettings({
       {/* 标题栏 */}
       <div className="p-4">
         <div className="flex items-center justify-between">
-          <span className="font-medium">字幕设置</span>
+          <span className="font-medium">字幕設定</span>
           <div className="flex items-center space-x-1">
             <Button
               onClick={() => updateStyle({ visible: !style.visible })}
               variant={style.visible ? "default" : "outline"}
               size="sm"
-              title={style.visible ? '隐藏字幕' : '显示字幕'}
+              title={style.visible ? '隱藏字幕' : '顯示字幕'}
             >
               {style.visible ? <Eye className="w-3 h-3" /> : <EyeOff className="w-3 h-3" />}
             </Button>
@@ -170,7 +170,7 @@ export function SubtitleSettings({
               onClick={resetToDefault}
               variant="outline"
               size="sm"
-              title="重置为默认"
+              title="重置為預設"
             >
               <RotateCcw className="w-3 h-3" />
             </Button>
@@ -180,7 +180,7 @@ export function SubtitleSettings({
 
       {/* 预设样式 */}
       <div className="p-4">
-        <Label className="text-sm font-medium mb-3 block">预设样式</Label>
+        <Label className="text-sm font-medium mb-3 block">預設樣式</Label>
         <div className="grid grid-cols-2 gap-2">
           {presetStyles.map((preset) => (
             <Button
@@ -202,7 +202,7 @@ export function SubtitleSettings({
         <div>
           <Label className="text-sm font-medium mb-3 flex items-center">
             <Type className="w-4 h-4 mr-2" />
-            字体设置
+            字型設定
           </Label>
           <div className="space-y-4">
             <div className="grid grid-cols-4 items-center gap-2">
@@ -218,13 +218,13 @@ export function SubtitleSettings({
                   updateStyle({ fontSize: value });
                 }}
                 className="col-span-2"
-                placeholder="字体大小"
+                placeholder="字型大小"
               />
               <span className="text-sm text-muted-foreground">px</span>
             </div>
 
             <div className="grid grid-cols-4 items-center gap-2">
-              <Label htmlFor="fontFamily" className="text-sm">字体</Label>
+              <Label htmlFor="fontFamily" className="text-sm">字型</Label>
               <Select
                 value={style.fontFamily}
                 onValueChange={(value) => updateStyle({ fontFamily: value })}
@@ -234,16 +234,16 @@ export function SubtitleSettings({
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="Arial, sans-serif">Arial</SelectItem>
-                  <SelectItem value="'Microsoft YaHei', sans-serif">微软雅黑</SelectItem>
-                  <SelectItem value="'PingFang SC', sans-serif">苹方</SelectItem>
-                  <SelectItem value="'Source Han Sans', sans-serif">思源黑体</SelectItem>
-                  <SelectItem value="monospace">等宽字体</SelectItem>
+                  <SelectItem value="'Microsoft YaHei', sans-serif">微軟正黑體</SelectItem>
+                  <SelectItem value="'PingFang SC', sans-serif">蘋方</SelectItem>
+                  <SelectItem value="'Source Han Sans', sans-serif">思源黑體</SelectItem>
+                  <SelectItem value="monospace">等寬字型</SelectItem>
                 </SelectContent>
               </Select>
             </div>
 
             <div className="grid grid-cols-4 items-center gap-2">
-              <Label className="text-sm">样式</Label>
+              <Label className="text-sm">樣式</Label>
               <div className="col-span-3">
                 <ToggleGroup
                   type="multiple"
@@ -258,10 +258,10 @@ export function SubtitleSettings({
                     });
                   }}
                 >
-                  <ToggleGroupItem value="bold" aria-label="加粗">
+                  <ToggleGroupItem value="bold" aria-label="粗體">
                     <Bold className="w-4 h-4" />
                   </ToggleGroupItem>
-                  <ToggleGroupItem value="italic" aria-label="斜体">
+                  <ToggleGroupItem value="italic" aria-label="斜體">
                     <Italic className="w-4 h-4" />
                   </ToggleGroupItem>
                 </ToggleGroup>
@@ -274,7 +274,7 @@ export function SubtitleSettings({
         <div>
           <Label className="text-sm font-medium mb-3 flex items-center">
             <Palette className="w-4 h-4 mr-2" />
-            颜色设置
+            顏色設定
           </Label>
           <div className="space-y-4">
             <div className="grid grid-cols-4 items-center gap-2">
@@ -312,7 +312,7 @@ export function SubtitleSettings({
             </div>
 
             <div className="grid grid-cols-4 items-center gap-2">
-              <Label className="text-sm">边框</Label>
+              <Label className="text-sm">外框</Label>
               <input
                 type="color"
                 value={style.borderColor}
@@ -332,7 +332,7 @@ export function SubtitleSettings({
 
         {/* 对齐方式 */}
         <div>
-          <Label className="text-sm font-medium mb-3 block">文字对齐</Label>
+          <Label className="text-sm font-medium mb-3 block">文字對齊</Label>
           <ToggleGroup
             type="single"
             value={style.textAlign}
@@ -342,13 +342,13 @@ export function SubtitleSettings({
               }
             }}
           >
-            <ToggleGroupItem value="left" aria-label="左对齐">
+            <ToggleGroupItem value="left" aria-label="靠左對齊">
               <AlignLeft className="w-4 h-4" />
             </ToggleGroupItem>
-            <ToggleGroupItem value="center" aria-label="居中">
+            <ToggleGroupItem value="center" aria-label="置中">
               <AlignCenter className="w-4 h-4" />
             </ToggleGroupItem>
-            <ToggleGroupItem value="right" aria-label="右对齐">
+            <ToggleGroupItem value="right" aria-label="靠右對齊">
               <AlignRight className="w-4 h-4" />
             </ToggleGroupItem>
           </ToggleGroup>
@@ -356,9 +356,9 @@ export function SubtitleSettings({
 
         {/* 位置设置 */}
         <div>
-          <Label className="text-sm font-medium mb-3 block">位置设置</Label>
+          <Label className="text-sm font-medium mb-3 block">位置設定</Label>
           <div className="grid grid-cols-4 items-center gap-2">
-            <Label htmlFor="bottomOffset" className="text-sm">底部距离</Label>
+            <Label htmlFor="bottomOffset" className="text-sm">底部距離</Label>
             <Input
               id="bottomOffset"
               type="number"
@@ -372,7 +372,7 @@ export function SubtitleSettings({
                 }
               }}
               className="col-span-2"
-              placeholder="底部距离"
+              placeholder="底部距離"
             />
             <span className="text-sm text-muted-foreground">px</span>
           </div>
@@ -400,7 +400,7 @@ export function SubtitleSettings({
 
         {/* 阴影设置 */}
         <div>
-          <Label className="text-sm font-medium mb-3 block">阴影设置</Label>
+          <Label className="text-sm font-medium mb-3 block">陰影設定</Label>
           <div className="space-y-3">
             <div className="grid grid-cols-4 items-center gap-2">
               <Label className="text-sm">模糊</Label>

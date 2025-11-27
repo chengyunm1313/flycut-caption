@@ -133,10 +133,10 @@ export class WebAVEngine implements IVideoProcessingEngine {
         .sort((a, b) => a.start - b.start);
 
       if (keptSegments.length === 0) {
-        throw new Error('没有要保留的视频片段');
+        throw new Error('No video segments to keep');
       }
 
-      this.reportProgress('processing', 10, '分析删除片段...');
+      this.reportProgress('processing', 10, 'Analyzing deleted segments...');
 
       // 获取所有删除的片段并合并连续片段
       const deletedSegments = this.mergeConsecutiveSegments(
